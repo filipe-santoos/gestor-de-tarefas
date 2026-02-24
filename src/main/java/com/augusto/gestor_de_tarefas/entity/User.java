@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Getter @Setter
@@ -15,8 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank // Impede campo vazio
     private String name;
+    @NotBlank
+    @Email // Só aceita formato de email valido
     private String email;
+    @NotBlank
+    @Size(min = 6) // 6 caracteres é o minimo para a criação da senha
     private String password;
 
     private LocalDateTime createdAt = LocalDateTime.now();
