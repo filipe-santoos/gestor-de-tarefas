@@ -16,13 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank // Impede campo vazio
+    @NotBlank(message = "Nome é Obrigatório")// Impede campo vazio essa mensagem é opcional, apenas quis mudar
     private String name;
-    @NotBlank
-    @Email // Só aceita formato de email valido
+    @NotBlank(message = "O e-mail é obrigatório")
+    @Email(message = "Informe um e-mail válido") // Só aceita formato de email valido
     private String email;
-    @NotBlank
-    @Size(min = 6) // 6 caracteres é o minimo para a criação da senha
+    @NotBlank(message = "A senha é obrigatória")
+    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres") // 6 caracteres é o minimo para a criação da senha
     private String password;
 
     private LocalDateTime createdAt = LocalDateTime.now();
