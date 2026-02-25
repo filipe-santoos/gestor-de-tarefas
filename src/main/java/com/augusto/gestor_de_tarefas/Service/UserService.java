@@ -15,6 +15,9 @@ public class UserService {
     }
 
     public User create(User user) {
+        if (repository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email já cadastrado");
+        }
         return repository.save(user);
     }
 
